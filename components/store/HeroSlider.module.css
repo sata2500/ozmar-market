@@ -1,0 +1,213 @@
+.slider {
+  position: relative;
+  width: 100%;
+  height: clamp(400px, 70vh, 700px);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+/* ─── Slide Track ─────────────────── */
+.track {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.active {
+  opacity: 1;
+  z-index: 2;
+  transform: scale(1);
+}
+
+.inactive {
+  opacity: 0;
+  z-index: 1;
+  transform: scale(1.02);
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* ─── Content ─────────────────────── */
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.contentInner {
+  max-width: 1280px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: slideContent 0.6s ease forwards;
+}
+
+@keyframes slideContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.5);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+}
+
+.description {
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+  line-height: 1.7;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cta {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* ─── Arrows ──────────────────────── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.arrow:hover {
+  background: rgba(99, 102, 241, 0.6);
+  border-color: rgba(99, 102, 241, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrowLeft { left: 1.5rem; }
+.arrowRight { right: 1.5rem; }
+
+/* ─── Dots ────────────────────────── */
+.dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  width: 24px;
+  background: var(--color-primary);
+}
+
+/* ─── Progress Bar ────────────────── */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 20;
+}
+
+.progress {
+  height: 100%;
+  background: var(--color-primary);
+  animation: progressAnim 5s linear forwards;
+}
+
+@keyframes progressAnim {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ─── Responsive ──────────────────── */
+@media (max-width: 768px) {
+  .slider {
+    height: clamp(300px, 55vw, 450px);
+  }
+
+  .arrowLeft { left: 0.75rem; }
+  .arrowRight { right: 0.75rem; }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cta {
+    align-self: center;
+  }
+}
