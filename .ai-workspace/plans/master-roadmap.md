@@ -43,8 +43,8 @@
 
 ## ÖNCELİK 3 — FAZA 3: Ürün & Kategori Yönetimi
 
-- [ ] **3.1** Veritabanı: `Category`, `Product`, `ProductVariant`, `ProductImage` modelleri
-- [ ] **3.2** Kategori CRUD (admin paneli)
+- [x] **3.1** Veritabanı: `Category`, `Product`, `ProductVariant`, `ProductImage` modelleri
+- [x] **3.2** Kategori CRUD (admin paneli)
 - [ ] **3.3** Ürün CRUD (admin paneli)
   - [ ] Çoklu görsel yükleme (drag & drop, Vercel Blob)
   - [ ] Varyant sistemi (beden, renk, vs.)
