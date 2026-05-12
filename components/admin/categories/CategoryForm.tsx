@@ -8,12 +8,12 @@ type CategoryParams = {
   id?: string;
   name?: string;
   slug?: string;
-  description?: string;
+  description?: string | null;
   parentId?: string | null;
   sortOrder?: number;
   isActive?: boolean;
-  metaTitle?: string;
-  metaDesc?: string;
+  metaTitle?: string | null;
+  metaDesc?: string | null;
   image?: string | null;
 };
 
