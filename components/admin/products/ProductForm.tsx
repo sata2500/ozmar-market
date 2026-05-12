@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition, useState } from "react";
-import { createProduct } from "@/app/admin/products/actions";
+import { createProduct, updateProduct } from "@/app/admin/products/actions";
 import styles from "../settings/SettingsForm.module.css";
 
 type Category = { id: string; name: string };
