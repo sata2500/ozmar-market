@@ -63,18 +63,18 @@
   - [x] Admin panelden slide yönetimi (görsel, başlık, link, buton)
   - [x] Sonsuz döngü, touch/swipe desteği
   - [x] Mobil/masaüstü ayrı yükseklik kontrolü
-- [ ] **4.3** Ürün listeleme sayfası
-  - [ ] Filtreleme (kategori, fiyat aralığı, stok durumu)
-  - [ ] Sıralama (fiyat, yenilik, popülerlik)
+- [x] **4.3** Ürün listeleme sayfası
+  - [x] Filtreleme (kategori, fiyat aralığı, stok durumu)
+  - [x] Sıralama (fiyat, yenilik, popülerlik)
   - [ ] Sayfalama (infinite scroll veya pagination)
-- [ ] **4.4** Ürün detay sayfası (SSR + ISR)
-  - [ ] Görsel galerisi
-  - [ ] Varyant seçimi
-  - [ ] Stok durumu gösterimi
+- [x] **4.4** Ürün detay sayfası (SSR + ISR)
+  - [x] Görsel galerisi
+  - [x] Varyant seçimi
+  - [x] Stok durumu gösterimi
   - [ ] JSON-LD Product schema (SEO)
-  - [ ] Benzer ürünler
-- [ ] **4.5** Kategori sayfaları
-- [ ] **4.6** Arama fonksiyonu (full-text search)
+  - [x] Benzer ürünler
+- [x] **4.5** Kategori sayfaları
+- [x] **4.6** Arama fonksiyonu (full-text search)
 - [ ] **4.7** Ürün inceleme/yorum sistemi
 
 **✅ Kabul Kriteri:** Google "Rich Results Test" ürün sayfasında başarılı. Core Web Vitals yeşil.
