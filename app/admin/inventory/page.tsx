@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+export const dynamic = "force-dynamic";
 import Link from "next/link";
 import styles from "../page.module.css";
 import tableStyles from "../table.module.css";
@@ -9,26 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function InventoryPage() {
-  // Fetch products that have stock <= lowStockAt and trackStock is true
-  const lowStockProducts = await prisma.product.findMany({
-    where: {
-      trackStock: true,
-      stock: {
-        lte: prisma.product.fields.lowStockAt, // In Prisma, comparing fields directly requires different syntax, let's use a simpler approach or raw query.
-      }
-    },
-    include: {
-      category: { select: { name: true } },
-    },
-    orderBy: { stock: "asc" },
-  });
-
-  // To properly compare field against field in Prisma:
-  // Unfortunately, direct field vs field comparison isn't fully supported in simple where clauses.
-  // Instead, we will fetch products where trackStock is true, and filter in JS if the DB is small,
-  // or use a raw query if it's large. For this e-commerce app, we can fetch all tracked products and filter.
-  // Actually, we can just fetch products where stock <= 5 (or a hardcoded threshold) 
-  // Let's fetch products with stock <= 10 for demonstration of low stock, and filter exact threshold in memory.
+  // Fetch products where trackStock is true
   const allTrackedProducts = await prisma.product.findMany({
     where: { trackStock: true },
     include: { category: { select: { name: true } }, variants: true },
