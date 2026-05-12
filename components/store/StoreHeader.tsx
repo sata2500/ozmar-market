@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./StoreHeader.module.css";
+import SearchBar from "./SearchBar";
 
 // Bu bileşen Server Component — theme verisini doğrudan okuyabilir
 // Cart sayısı için bir Client Component wrapper kullanacağız
@@ -23,12 +24,7 @@ export default function StoreHeader() {
 
         {/* Actions */}
         <div className={styles.actions}>
-          <Link href="/products?search=" className={styles.iconBtn} aria-label="Ara">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-          </Link>
+          <SearchBar />
 
           <Link href="/account" className={styles.iconBtn} aria-label="Hesabım">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
