@@ -2,7 +2,7 @@
 
 import { useTransition, useState } from "react";
 import { createCategory, updateCategory } from "@/app/admin/categories/actions";
-import styles from "../../settings/SettingsForm.module.css"; // Reuse settings form CSS
+import styles from "../settings/SettingsForm.module.css"; // Reuse settings form CSS
 
 type CategoryParams = {
   id?: string;

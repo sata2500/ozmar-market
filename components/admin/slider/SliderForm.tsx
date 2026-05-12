@@ -2,7 +2,7 @@
 
 import { useTransition, useState } from "react";
 import { createSlider, updateSlider } from "@/app/admin/slider/actions";
-import styles from "../../settings/SettingsForm.module.css";
+import styles from "../settings/SettingsForm.module.css";
 
 type SliderFormProps = {
   slider?: any;

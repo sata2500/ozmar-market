@@ -2,7 +2,7 @@
 
 import { useTransition, useState } from "react";
 import { createProduct } from "@/app/admin/products/actions";
-import styles from "../../settings/SettingsForm.module.css";
+import styles from "../settings/SettingsForm.module.css";
 
 type Category = { id: string; name: string };
 
