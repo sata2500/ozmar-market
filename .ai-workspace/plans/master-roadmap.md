@@ -58,11 +58,11 @@
 
 ## ÖNCELİK 4 — FAZA 4: Mağaza Ön Yüzü (Müşteri Arayüzü)
 
-- [ ] **4.1** Ana sayfa layout (Header, Hero Slider, Featured Products, Footer)
-- [ ] **4.2** **Hero Slider bileşeni**
-  - [ ] Admin panelden slide yönetimi (görsel, başlık, link, buton)
-  - [ ] Sonsuz döngü, touch/swipe desteği
-  - [ ] Mobil/masaüstü ayrı yükseklik kontrolü
+- [x] **4.1** Ana sayfa layout (Header, Hero Slider, Featured Products, Footer)
+- [x] **4.2** **Hero Slider bileşeni**
+  - [x] Admin panelden slide yönetimi (görsel, başlık, link, buton)
+  - [x] Sonsuz döngü, touch/swipe desteği
+  - [x] Mobil/masaüstü ayrı yükseklik kontrolü
 - [ ] **4.3** Ürün listeleme sayfası
   - [ ] Filtreleme (kategori, fiyat aralığı, stok durumu)
   - [ ] Sıralama (fiyat, yenilik, popülerlik)
