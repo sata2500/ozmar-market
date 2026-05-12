@@ -45,12 +45,12 @@
 
 - [x] **3.1** Veritabanı: `Category`, `Product`, `ProductVariant`, `ProductImage` modelleri
 - [x] **3.2** Kategori CRUD (admin paneli)
-- [ ] **3.3** Ürün CRUD (admin paneli)
-  - [ ] Çoklu görsel yükleme (drag & drop, Vercel Blob)
-  - [ ] Varyant sistemi (beden, renk, vs.)
-  - [ ] SEO alanları (meta title, description, slug)
-  - [ ] Stok & fiyat yönetimi
-- [ ] **3.4** Stok takip modülü (uyarı eşikleri, kritik stok bildirimi)
+- [x] **3.3** Ürün CRUD (admin paneli)
+  - [x] Çoklu görsel yükleme (drag & drop, Vercel Blob)
+  - [x] Varyant sistemi (beden, renk, vs.)
+  - [x] SEO alanları (meta title, description, slug)
+  - [x] Stok & fiyat yönetimi
+- [x] **3.4** Stok takip modülü (uyarı eşikleri, kritik stok bildirimi)
 
 **✅ Kabul Kriteri:** Ürün ekle, düzenle, sil, stok güncelle — tüm işlemler başarılı.
 
@@ -158,8 +158,8 @@
 |-----|--------|-------|
 | Faz 1 | Temel Altyapı | ✅ Tamamlandı |
 | Faz 2 | Admin Panel Temeli | ✅ Tamamlandı |
-| Faz 3 | Ürün & Kategori Yönetimi | 🔄 Devam Ediyor |
-| Faz 4 | Mağaza Ön Yüzü | 🔲 Bekliyor |
+| Faz 3 | Ürün & Kategori Yönetimi | ✅ Tamamlandı |
+| Faz 4 | Mağaza Ön Yüzü | 🔄 Devam Ediyor |
 | Faz 5 | Sepet & Ödeme | 🔲 Bekliyor |
 | Faz 6 | Sipariş & Müşteri Yönetimi | 🔲 Bekliyor |
 | Faz 7 | SEO & Google Shopping | 🔲 Bekliyor |

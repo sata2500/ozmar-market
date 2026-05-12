@@ -30,15 +30,32 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
     }
   };
 
+  const [variants, setVariants] = useState<any[]>(product?.variants || []);
+
+  const addVariant = () => {
+    setVariants([...variants, { name: "", price: "", stock: 0, sku: "", options: {} }]);
+  };
+
+  const removeVariant = (index: number) => {
+    setVariants(variants.filter((_, i) => i !== index));
+  };
+
+  const updateVariant = (index: number, field: string, value: any) => {
+    const newVariants = [...variants];
+    newVariants[index] = { ...newVariants[index], [field]: value };
+    setVariants(newVariants);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     const formData = new FormData(e.currentTarget);
+    formData.append("variantsData", JSON.stringify(variants));
     
     startTransition(async () => {
       let result;
       if (product?.id) {
-        // update (to be implemented)
+        result = await updateProduct(product.id, formData);
       } else {
         result = await createProduct(formData);
       }
@@ -96,15 +113,37 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
       </div>
 
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Fiyat & Stok</h3>
+        <h3 className={styles.sectionTitle}>Görseller</h3>
+        <div className={styles.grid}>
+          <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+            <label htmlFor="images">Yeni Görseller (Çoklu Seçim)</label>
+            <input type="file" id="images" name="images" accept="image/*" multiple />
+          </div>
+          {product?.images && product.images.length > 0 && (
+            <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+              <label>Mevcut Görseller</label>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                {product.images.map((img: any) => (
+                  <div key={img.id} className={styles.preview}>
+                    <img src={img.url} alt="Product Image" style={{ height: '80px', objectFit: 'cover' }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <h3 className={styles.sectionTitle}>Fiyat & Stok (Temel Ürün)</h3>
         <div className={styles.grid}>
           <div className={styles.formGroup}>
             <label htmlFor="price">Satış Fiyatı (₺) *</label>
-            <input type="number" step="0.01" id="price" name="price" defaultValue={product?.price || ""} required />
+            <input type="number" step="0.01" id="price" name="price" defaultValue={product?.price?.toString() || ""} required />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="comparePrice">İndirimsiz Fiyat (₺) (Üstü çizili gösterilir)</label>
-            <input type="number" step="0.01" id="comparePrice" name="comparePrice" defaultValue={product?.comparePrice || ""} />
+            <label htmlFor="comparePrice">İndirimsiz Fiyat (₺) (Üstü çizili)</label>
+            <input type="number" step="0.01" id="comparePrice" name="comparePrice" defaultValue={product?.comparePrice?.toString() || ""} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="stock">Stok Miktarı</label>
@@ -122,6 +161,41 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
             </label>
           </div>
         </div>
+      </div>
+
+      <div className={styles.section}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "0.75rem" }}>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--color-text)", margin: 0 }}>Varyantlar (Renk, Beden vb.)</h3>
+          <button type="button" onClick={addVariant} className="btn btn-outline" style={{ padding: "0.3rem 0.6rem", fontSize: "0.85rem" }}>
+            + Varyant Ekle
+          </button>
+        </div>
+        
+        {variants.length === 0 ? (
+          <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>Bu ürüne ait varyant bulunmuyor.</p>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            {variants.map((v, index) => (
+              <div key={index} style={{ display: "flex", gap: "1rem", alignItems: "flex-end", background: "var(--color-bg)", padding: "1rem", borderRadius: "var(--radius-md)" }}>
+                <div className={styles.formGroup} style={{ flex: 2 }}>
+                  <label>Varyant Adı (Örn: M - Kırmızı)</label>
+                  <input type="text" value={v.name} onChange={e => updateVariant(index, "name", e.target.value)} required />
+                </div>
+                <div className={styles.formGroup} style={{ flex: 1 }}>
+                  <label>Fiyat (Opsiyonel)</label>
+                  <input type="number" step="0.01" value={v.price} onChange={e => updateVariant(index, "price", e.target.value)} placeholder="0.00" />
+                </div>
+                <div className={styles.formGroup} style={{ flex: 1 }}>
+                  <label>Stok</label>
+                  <input type="number" value={v.stock} onChange={e => updateVariant(index, "stock", e.target.value)} />
+                </div>
+                <button type="button" onClick={() => removeVariant(index)} style={{ padding: "0.75rem", background: "rgba(239, 68, 68, 0.1)", color: "#ef4444", border: "none", borderRadius: "var(--radius-md)", cursor: "pointer", height: "42px" }}>
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className={styles.actions}>

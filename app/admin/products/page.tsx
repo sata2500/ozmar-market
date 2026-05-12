@@ -13,6 +13,8 @@ export default async function ProductsPage() {
   const products = await prisma.product.findMany({
     include: {
       category: { select: { name: true } },
+      images: { orderBy: { sortOrder: 'asc' }, take: 1 },
+      _count: { select: { variants: true } }
     },
     orderBy: { createdAt: "desc" },
   });
@@ -38,10 +40,12 @@ export default async function ProductsPage() {
           <table className={tableStyles.table}>
             <thead>
               <tr>
+                <th>Görsel</th>
                 <th>Ürün Adı</th>
                 <th>Kategori</th>
                 <th>Fiyat</th>
                 <th>Stok</th>
+                <th>Varyant</th>
                 <th>Durum</th>
                 <th>İşlemler</th>
               </tr>
@@ -49,10 +53,18 @@ export default async function ProductsPage() {
             <tbody>
               {products.map((product) => (
                 <tr key={product.id}>
+                  <td>
+                    {product.images[0] ? (
+                      <img src={product.images[0].url} alt={product.name} width="40" height="40" style={{ borderRadius: "4px", objectFit: "cover" }} />
+                    ) : (
+                      <div style={{ width: "40px", height: "40px", background: "var(--color-surface-2)", borderRadius: "4px" }} />
+                    )}
+                  </td>
                   <td style={{ fontWeight: 500 }}>{product.name}</td>
                   <td>{product.category?.name || "-"}</td>
                   <td>₺{product.price.toString()}</td>
                   <td>{product.stock}</td>
+                  <td>{product._count.variants}</td>
                   <td>
                     <span className={`${tableStyles.badge} ${product.isActive ? tableStyles.badgeActive : tableStyles.badgeInactive}`}>
                       {product.isActive ? "Aktif" : "Pasif"}
@@ -60,7 +72,13 @@ export default async function ProductsPage() {
                   </td>
                   <td>
                     <div className={tableStyles.actions}>
-                      {/* TODO: Add edit page link when implemented */}
+                      <Link href={`/admin/products/${product.id}`} className={`${tableStyles.btnSmall} ${tableStyles.btnEdit}`}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        Düzenle
+                      </Link>
                       <DeleteProductButton id={product.id} />
                     </div>
                   </td>
